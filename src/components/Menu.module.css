@@ -1,0 +1,22 @@
+.menu{
+    color:white;
+    display: grid;
+    justify-content: center;
+}
+.menu ul{
+    padding: 0;
+    min-width: 50vw;
+}
+
+.menuListItem {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr) 200px;
+    border-bottom: 2px dotted lightgray;
+    padding: 5px 0;
+}
+
+.menuListItem>div:nth-child(3){
+    /* grid-column: span 2; */
+    justify-self: end;
+}
