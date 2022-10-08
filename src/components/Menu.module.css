@@ -8,6 +8,10 @@
     min-width: 50vw;
 }
 
+.loading{
+    display: grid;
+    justify-items: center;
+}
 .menuListItem {
     display: grid;
     justify-content: space-between;
