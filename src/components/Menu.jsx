@@ -4,6 +4,7 @@ import { useEffect,  } from 'react';
 // import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMenu } from '../store/menu-actions';
+import { Link } from 'react-router-dom';
 
 export const Menu = () => {
     const dispatch = useDispatch();
@@ -33,11 +34,13 @@ export const Menu = () => {
             <ul>
                 { !Array.isArray(menuItems) && <div className={classes.loading}>Loading...</div>}
                 { Array.isArray(menuItems) && menuItems.map(item => (
-                <li className={classes.menuListItem} key={item.id}>
+                    <Link to={`/menu/${item.id}`} key={item.id} >
+                <li className={classes.menuListItem} >
                     <div>{item.name}</div>
                     <div>{item.description}</div>
                     <div>{item.price}</div>
                     </li>
+                    </Link>
                     ))}
             </ul>
         </div>

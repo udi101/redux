@@ -1,6 +1,14 @@
+@import './styles/colors';
+@import './styles/typography';
+
 * {
   box-sizing: border-box;
 }
+
+@mixin on-desktop {
+  @media screen and (min-width:1043px) { @content; }
+}
+
 
 body {
   margin: 0;
@@ -24,3 +32,17 @@ button:active {
   background-color: #5b14ac;
   border-color: #5b14ac;
 }
+
+h1{
+  font-size: 1.2rem;
+}
+
+.container {
+  display: block;
+  margin: 0 auto;
+
+  @include on-desktop {
+  max-width: 1024px;
+  }
+}
+

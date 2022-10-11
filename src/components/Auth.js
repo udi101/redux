@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authActions } from './../store/auth';
 import classes from './Auth.module.css';
@@ -6,12 +7,16 @@ import classes from './Auth.module.css';
 const Auth = () => {
   const dispatch = useDispatch()
 
+
   const authSubmitHandler = (event) => {
     event.preventDefault();
-    dispatch(authActions.login())
+    dispatch(authActions.login());
   }
 
-
+useEffect(() => {
+  if(!!localStorage.getItem('name')) {
+    dispatch(authActions.login());
+  }},[dispatch])
 
   return (
     <main className={classes.auth}>

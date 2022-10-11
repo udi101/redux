@@ -1,8 +1,10 @@
-import classes from './Header.module.css';
+import classes from './Header.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions } from '../store/auth';
+import { NavLink } from 'react-router-dom';
+import React from 'react';
 
-const Header = () => {
+const Header = (props) => {
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuthenticated);
 
@@ -11,16 +13,17 @@ const Header = () => {
   }
 
   return (
+    <React.Fragment>
     <header className={classes.header}>
       <h1>Redux Auth</h1>
       {isAuth && (
-      <nav>
+      <nav className='text'>
         <ul>
           <li>
-            <a href='/'>My Products</a>
+            <NavLink activeClassName={classes.active} to='/menu'>Menu</NavLink>
           </li>
           <li>
-            <a href='/'>My Sales</a>
+            <NavLink activeClassName={classes.active} to='/counter'>Counter</NavLink>
           </li>
           <li>
             <button onClick={logOutHandler}>Logout</button>
@@ -29,6 +32,8 @@ const Header = () => {
       </nav>
       )}
     </header>
+    {props.children}
+        </React.Fragment>
   );
 };
 

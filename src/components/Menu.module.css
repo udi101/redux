@@ -24,3 +24,7 @@
     /* grid-column: span 2; */
     justify-self: end;
 }
+.menu a{
+    color:inherit;
+    text-decoration: inherit;
+}
