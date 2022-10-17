@@ -1,3 +1,5 @@
+import React from "react";
+
 const NotFound = () => {
     return (
         <section className="container">
@@ -6,4 +8,4 @@ const NotFound = () => {
     )
 }
 
-export default NotFound;
+export default React.memo(NotFound);

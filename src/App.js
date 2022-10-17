@@ -7,7 +7,7 @@ import Welcome from './pages/Welcome';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Menu } from './components/Menu';
-import { Redirect, Route, Switch, exact } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -18,32 +18,31 @@ function App() {
 
       <Header>
       { isAuth ? <UserProfile /> : <Auth /> }
-      <Switch>
+      <Routes>
       {isAuth &&
-      <Route path='/counter'>
-        <Counter />
+ 
+      <Route path='/counter' element={<Counter />}>
       </Route>
       }
+      
 
-      <Route path='/' exact>
-        <Redirect to='/welcome' />
+      <Route path='/' element={<Navigate replace to='/welcome' />} />
+
+      <Route path='/welcome/*' element={<Welcome />}>
+        <Route path='new-user' element={<div className="textColor">Welcome new User</div>} />
       </Route>
-      <Route path='/welcome'>
-        <Welcome />
-        </Route>
+
 
       {isAuth && 
-      <Route path='/menu' exact>
-        <Menu />
-      </Route>
+
+      <Route path='/menu' element={<Menu />} />
+
       }
-      <Route path='/menu/:itemId'>
-        <MenuItemDetails />
-      </Route>
-      <Route path='*'>
-        <NotFound />
-      </Route>
-      </Switch>
+
+
+      <Route path='/menu/:itemId' element={ <MenuItemDetails />} />
+      <Route path='*' element={<NotFound />} />
+      </Routes>
       </Header>
     </React.Fragment>
   );

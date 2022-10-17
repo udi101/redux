@@ -1,15 +1,23 @@
-import { Route } from "react-router-dom";
+import React from 'react';
+import { Link, useLocation, Outlet } from "react-router-dom";
 
 const Welcome = () => {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    console.log(queryParams.get('admin'));
     return (
         <div className="container text">
-            Welome user
-            <Route path='/welcome/new-user'>
-                <div className="textColor">Welcome new User</div>
+            <span>Welome user
+            <Link to='?admin=true' className='text'> Admin</Link></span>
+            <Outlet />
+            {/* <Routes>
+            <Route path='new-user' element={<div className="textColor">Welcome new User</div>}>
+                
             </Route>
+            </Routes> */}
         </div>
     )
 }
 
 
-export default Welcome;
+export default React.memo(Welcome);
