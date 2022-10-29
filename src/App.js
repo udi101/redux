@@ -9,12 +9,15 @@ import { useSelector } from 'react-redux';
 import { Menu } from './components/Menu';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import NotFound from './pages/NotFound';
+import {RecoilRoot} from "recoil";
+
+
 
 function App() {
   const isAuth = useSelector(state => state.auth.isAuthenticated);
 
   return (
-    <React.Fragment>
+    <RecoilRoot>
 
       <Header>
       { isAuth ? <UserProfile /> : <Auth /> }
@@ -44,7 +47,7 @@ function App() {
       <Route path='*' element={<NotFound />} />
       </Routes>
       </Header>
-    </React.Fragment>
+    </RecoilRoot>
   );
 }
 
